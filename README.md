@@ -1,36 +1,38 @@
-# Flask in depth
+# Flask In Depth
 
-## Setting up Python Virtual Environment
+## Set Up Virtual Environment (recommended)
 
 ```sh
 pip install virtualenv
 virtualenv venv
 cd venv/bin
-source activate # Should show name (venv) before prompt
+source venv/bin/activate(.fish|.zsh|.py) # will name (venv) if active
 # `devactivate` # To leave
-cd ../../
-pip install flask
-python; import flask; # if no error, installed correctly
-flask run
-pip freeze > reqiurements.txt # save dependencies
-pip install -r requirements.txt # install all requirments
 ```
 
-Most basic flask app:
-
-```py
-from flask import Flask
-app = Flask(__name__)
-
-@app.route("/") # Route decorator.
-# Calls the below function on the defined route.
-def hello():
-  return "Hello World."
-```
-
-Set the FLASK_APP environment variable:
+## Installation
 
 ```sh
-export FLASK_APP=flaskblog.py
-export FLASK_DEBUG=1
+pip freeze > reqiurements.txt # save dependencies
+python; import flask; exit() # if no error, installed correctly
+pip install -r requirements.txt # install all requirments
+pip list --local # List installed packages in current virtual environment
+sh start.sh # contents below
+  # export FLASK_APP=flaskblog.py
+  # export FLASK_DEBUG=1
+  # flask run
+```
+
+## Project Structure
+
+```sh
+.
+├── flaskblog.py # Flask entry point
+├── requirements.txt # Manifest of dependencies
+├── start.sh # Sets env vars and starts the app
+├── static # Static CSS, JS, images
+├── templates # Jinja2 templates
+│   └── **/*.html
+└── venv
+    └── # virtualenv dir (optional)
 ```

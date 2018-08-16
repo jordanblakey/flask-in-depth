@@ -1,0 +1,13 @@
+.navbar {
+  background: #999;
+  border: 0;
+  border-radius: 0;
+}
+
+.navbar-default .navbar-brand, .navbar-default .navbar-nav>li>a {
+  color: #fff;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: #fff;
+}
