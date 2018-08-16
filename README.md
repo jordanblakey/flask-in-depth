@@ -12,6 +12,8 @@ cd ../../
 pip install flask
 python; import flask; # if no error, installed correctly
 flask run
+pip freeze > reqiurements.txt # save dependencies
+pip install -r requirements.txt # install all requirments
 ```
 
 Most basic flask app:
