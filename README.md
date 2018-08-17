@@ -73,6 +73,8 @@ python run.py
 >>> user = User.query.filter_by(username='test').first()
 # 1
 >>> user.id
+# Shows hashed password
+>>> user.password
 # query by id
 >>> user = user.query.get(1)
 # Collection of Post instances (db rows)
@@ -85,4 +87,15 @@ python run.py
 >>> db.drop_all()
 # create tables again in empty state
 >>> db.create_all()
+```
+
+## Password Hashing With BCrypt
+
+```py
+>>> from flask import Bcrypt
+>>> bcrypt = Bcrypt()
+# Generates a different hash every time, preventing hash table attacks
+>>> hashed_pw = bcrypt.generate_password_hash('testing').decode('utf-8')
+>>> bcrypt.check_password_hash(hashed_pw, 'password') # False
+>>> bcrypt.check_password_hash(hashed_pw, 'testing') # True
 ```
