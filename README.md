@@ -13,28 +13,27 @@ source venv/bin/activate(.fish|.zsh|.py) # will name (venv) if active
 ## Installation
 
 ```sh
+pip install -r requirements.txt # install all requirments
 pip freeze > reqiurements.txt # save dependencies
 python; import flask; exit() # if no error, installed correctly
-pip install -r requirements.txt # install all requirments
 pip list --local # List installed packages in current virtual environment
-sh start.sh # contents below
-  # export FLASK_APP=flaskblog.py
-  # export FLASK_DEBUG=1
-  # flask run
+python run.py
 ```
 
 ## Project Structure
 
 ```sh
 .
-├── flaskblog.py # Flask entry point
+├── flaskblog
+│   ├── forms.py # WTForm definitions
+│   ├── __init__.py # Init app, init ORM, import routes
+│   ├── models.py # SQLAlchemy models
+│   ├── routes.py # Route definitions, import models
+│   ├── static/ # Static CSS, JS, images
+│   └── templates/ # Jinja2 templates
 ├── requirements.txt # Manifest of dependencies
-├── start.sh # Sets env vars and starts the app
-├── static # Static CSS, JS, images
-├── templates # Jinja2 templates
-│   └── **/*.html
-└── venv
-    └── # virtualenv dir (optional)
+├── run.py # Flask entry point
+└── venv/ # virtualenv dir (optional)
 ```
 
 ## Flask Snippets
@@ -51,7 +50,7 @@ sh start.sh # contents below
 ```py
 # import ORM instance from module
 >>> from flaskblog import db
-# Create rows as defined by ORM instance
+# Create tables as defined by ORM instance
 >>> db.create_all()
 >>> from flaskblog import User, Post
 # Create ORM row instance
