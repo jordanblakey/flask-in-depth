@@ -36,3 +36,54 @@ sh start.sh # contents below
 └── venv
     └── # virtualenv dir (optional)
 ```
+
+## Flask Snippets
+
+```py
+# ALL ##########################################################
+# BASE: hw | route | routegp | routep |
+# APP: fapp | froute | furl | fmeth | frt | ftreq | fup | fsup | frc | fsc | feh | flog
+# TEMPLATING: fexp | ffilter | fcomment | fblock | fextends | fself | fsuper | ffor | fif | fife | felif | fmacro | ffb | fset | finclude | fimport | fautoescape | furl
+```
+
+## SQLAlchemy Commands
+
+```py
+# import ORM instance from module
+>>> from flaskblog import db
+# Create rows as defined by ORM instance
+>>> db.create_all()
+>>> from flaskblog import User, Post
+# Create ORM row instance
+>>> user_1 = User(username='test', email='test@test.test', password='test')
+# Create ORM row instance
+>>> post_1 = Post(title='Blog 1', content='First Post Content!', user_id=user.id)
+# Stage changes in memory
+>>> db.session.add(user_1, post_1)
+# Write changes to database
+>>> db.session.commit()
+# Discard uncommited changes from session
+>>> db.session.rollback()
+# SELECT * FROM user
+>>> User.query.all()
+# SELECT * FROM user WHERE * username = 'test'
+>>> User.query.filter_by(username='test').all()
+# SELECT * FROM user LIMIT 1
+>>> User.query.first()
+# SELECT * FROM user WHERE * username = 'test' LIMIT 1
+>>> user = User.query.filter_by(username='test').first()
+# 1
+>>> user.id
+# query by id
+>>> user = user.query.get(1)
+# Collection of Post instances (db rows)
+# Loop through rows and print all (note posts mapped with user.id:post.user_id)
+>>> for post in user.posts:
+# uses backref="author" from User class
+# Note post table has no column 'author', while post.user_id is the foreign key used to get the 'author' row
+...     print(post.author, post.user_id)
+# flush the database
+>>> db.drop_all()
+# create tables again in empty state
+>>> db.create_all()
+```
