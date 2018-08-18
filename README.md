@@ -7,7 +7,7 @@ pip install virtualenv
 virtualenv venv
 cd venv/bin
 source venv/bin/activate(.fish|.zsh|.py) # will name (venv) if active
-# `devactivate` # To leave
+# `deactivate` # To leave
 ```
 
 ## Installation
@@ -58,10 +58,11 @@ python run.py
 # Create ORM row instance
 >>> post_1 = Post(title='Blog 1', content='First Post Content!', user_id=user.id)
 # Stage changes in memory
->>> db.session.add(user_1, post_1)
+>>> db.session.add(user_1)
+>>> db.session.add(post_1)
 # Write changes to database
 >>> db.session.commit()
-# Discard uncommited changes from session
+# Discard uncommited changes from session (error handling)
 >>> db.session.rollback()
 # SELECT * FROM user
 >>> User.query.all()
