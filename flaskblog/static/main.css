@@ -63,6 +63,11 @@ a.article-title:hover {
   height: 65px;
   width: 65px;
   margin-right: 16px;
+  float: left;
+}
+
+.rounded-circle {
+  border-radius: 50%;
 }
 
 .article-metadata {
