@@ -77,13 +77,16 @@ python run.py
 # Shows hashed password
 >>> user.password
 # query by id
->>> user = user.query.get(1)
+>>> user = User.query.get(1)
 # Collection of Post instances (db rows)
 # Loop through rows and print all (note posts mapped with user.id:post.user_id)
 >>> for post in user.posts:
 # uses backref="author" from User class
 # Note post table has no column 'author', while post.user_id is the foreign key used to get the 'author' row
 ...     print(post.author, post.user_id)
+# Delete a row/rows stored from query
+>>> db.session.delete(user)
+>>> db.session.commit()
 # flush the database
 >>> db.drop_all()
 # create tables again in empty state
