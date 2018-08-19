@@ -103,3 +103,39 @@ python run.py
 >>> bcrypt.check_password_hash(hashed_pw, 'password') # False
 >>> bcrypt.check_password_hash(hashed_pw, 'testing') # True
 ```
+
+## SQLite3 Basics
+
+### Basic Operation Config
+
+```sh
+sqlite3 #open the cli tool
+.exit # exit the cli tool
+.open <filename.db> #open local database
+.show # print all SQLite config options
+.mode column # Pretty print stdout as columns
+.headers (on|off) # In col view, toggle column headers
+```
+
+### Recon
+
+```sh
+.database #list the current database
+.databases #list all databases (in the current directory?)
+.schema #print out the db schema
+.schema <tablename> # print the schema for a single table
+.indexes # print all indexes in the current database
+.indexes <tablename> # print all indexes in a single table
+.tables #list all tables
+.table <tablename> #check for the existence of table
+```
+
+### Queries
+
+```sh
+.output post.txt
+SELECT \* FROM post LIMIT 10; #output query results to file.
+'SELECT \* FROM post LIMIT 10;' > commands.txt; sqlite3;
+.open <filename.db>
+.read commands.txt # Read SQL statements from a file.
+```
