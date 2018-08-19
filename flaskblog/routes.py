@@ -12,11 +12,16 @@ from flaskblog.models import User, Post
 from flask_login import login_user, current_user, logout_user, login_required
 
 
+# STATIC ######################################################################
+
 @app.route('/')
 @app.route('/home')  # Second route decorator for multiple redirects
 def home():
   # pass data into the template with a second argument
-  posts = Post.query.all()
+  page = request.args.get('page', 1, type=int)
+ # Get newest posts first, paginate w/ page size of 5 and page # via URL param
+  posts = Post.query.order_by(
+      Post.date_posted.desc()).paginate(page=page, per_page=5)
   return render_template('home.html', posts=posts)
 
 
@@ -24,6 +29,8 @@ def home():
 def about():
   return render_template('about.html', title='About')
 
+
+# AUTH ########################################################################
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -102,6 +109,7 @@ def account():
       'account.html', title='Account', image_file=image_file, form=form)
 
 
+# POST ########################################################################
 @app.route('/post/new', methods=['GET', 'POST'])
 @login_required
 def new_post():
@@ -153,6 +161,22 @@ def delete_post(post_id):
   db.session.commit()
   flash('Your post has been deleted.', 'success')
   return redirect(url_for('home'))
+
+
+# AUTHOR ######################################################################
+
+@app.route('/user/<string:username>')
+def user_posts(username):
+  page = request.args.get('page', 1, type=int)
+  user = User.query.filter_by(username=username).first_or_404()
+ # Get newest posts first, paginate w/ page size of 5 and page # via URL param
+  posts = Post.query.filter_by(author=user)\
+      .order_by(Post.date_posted.desc())\
+      .paginate(page=page, per_page=5)
+  return render_template('user_posts.html', user=user, posts=posts)
+
+
+# ERRORS ######################################################################
 
 
 @app.errorhandler(404)

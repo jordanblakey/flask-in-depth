@@ -106,7 +106,7 @@ python run.py
 
 ## SQLite3 Basics
 
-### Basic Operation Config
+### Basic Operation & Config
 
 ```sh
 sqlite3 #open the cli tool
@@ -138,4 +138,13 @@ SELECT \* FROM post LIMIT 10; #output query results to file.
 'SELECT \* FROM post LIMIT 10;' > commands.txt; sqlite3;
 .open <filename.db>
 .read commands.txt # Read SQL statements from a file.
+```
+
+### Duplicating Data
+
+```sh
+CREATE TEMPORARY TABLE tmp AS SELECT * FROM post;
+UPDATE tmp SET id = NULL;
+INSERT INTO src SELECT * FROM post;
+DROP TABLE tmp;
 ```
