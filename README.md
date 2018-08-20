@@ -20,6 +20,19 @@ pip list --local # List installed packages in current virtual environment
 python run.py
 ```
 
+## ENVIRONMENT VARIABLES
+
+You'll need to supply a .env file with your projects keys:
+
+```sh
+# .env file at project root
+SECRET_KEY=<32 byte hash>
+DB_URI=<SQLite or PostgreSQL URI>
+EMAIL_USER=<SMTP username of your choice. Using Mailjet.>
+EMAIL_PASS=<SMTP password>
+EMAIL_SENDER=<Email validated with SMTP service. Requires SPF and DKIS records.>
+```
+
 ## Project Structure
 
 ```sh
