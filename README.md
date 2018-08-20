@@ -43,11 +43,11 @@ EMAIL_SENDER=<Email validated with SMTP service. Requires SPF and DKIM records.>
 │   ├── __init__.py # Init app, init ORM, import routes
 │   ├── models.py # SQLAlchemy models
 │   ├── static/ # Static CSS, JS, images
-│   ├── main/ # Main pkg (__init__.py, routes, forms, utils)
-│   ├── posts/ # Posts pkg (__init__.py, routes, forms, utils)
+│   ├── main/ # Main blueprint (__init__, routes, forms, utils)
+│   ├── posts/ # Posts blueprint (__init__, routes, forms, utils)
 │   ├── site.db # SQLite3 Database
 │   ├── templates/ # Jinja2 templates
-│   └── users/ # Users pkg (__init__.py, routes, forms, utils)
+│   └── users/ # Users blueprint (__init__, routes, forms, utils)
 ├── requirements.txt # Manifest of dependencies
 ├── run.py # Flask entry point
 ├── .env # Environment variables

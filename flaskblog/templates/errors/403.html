@@ -1,13 +1,15 @@
 {% extends "layout.html" %}
 
 {% block content %}
-  <h1>Forbidden</h1>
-  <h3>You need permission to view this page.</h3>
-  <p>
-    It's also possible this page is not viewable with your account. <br>
-  </p>
-  <p>
-    <a href="{{ url_for('users.login') }}">Login</a><br>
-    <a href="{{ url_for('main.home') }}">Home</a>
-  </p>
+  <div class="content-section">
+    <h1>Forbidden</h1>
+    <h3>You need permission to view this page.</h3>
+    <p>
+      It's also possible this page is not viewable with your account. <br>
+    </p>
+    <p>
+      <a href="{{ url_for('users.login') }}">Login</a><br>
+      <a href="{{ url_for('main.home') }}">Home</a>
+    </p>
+  </div>
 {% endblock content %}
