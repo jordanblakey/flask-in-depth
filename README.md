@@ -20,7 +20,7 @@ pip list --local # List installed packages in current virtual environment
 python run.py
 ```
 
-## ENVIRONMENT VARIABLES
+## Environment Variables
 
 You'll need to supply a .env file with your projects keys:
 
@@ -30,7 +30,7 @@ SECRET_KEY=<32 byte hash>
 DB_URI=<SQLite or PostgreSQL URI>
 EMAIL_USER=<SMTP username of your choice. Using Mailjet.>
 EMAIL_PASS=<SMTP password>
-EMAIL_SENDER=<Email validated with SMTP service. Requires SPF and DKIS records.>
+EMAIL_SENDER=<Email validated with SMTP service. Requires SPF and DKIM records.>
 ```
 
 ## Project Structure
@@ -38,14 +38,19 @@ EMAIL_SENDER=<Email validated with SMTP service. Requires SPF and DKIS records.>
 ```sh
 .
 ├── flaskblog
+│   ├── config.py # App configuration
 │   ├── forms.py # WTForm definitions
 │   ├── __init__.py # Init app, init ORM, import routes
 │   ├── models.py # SQLAlchemy models
-│   ├── routes.py # Route definitions, import models
 │   ├── static/ # Static CSS, JS, images
-│   └── templates/ # Jinja2 templates
+│   ├── main/ # Main pkg (__init__.py, routes, forms, utils)
+│   ├── posts/ # Posts pkg (__init__.py, routes, forms, utils)
+│   ├── site.db # SQLite3 Database
+│   ├── templates/ # Jinja2 templates
+│   └── users/ # Users pkg (__init__.py, routes, forms, utils)
 ├── requirements.txt # Manifest of dependencies
 ├── run.py # Flask entry point
+├── .env # Environment variables
 └── venv/ # virtualenv dir (optional)
 ```
 

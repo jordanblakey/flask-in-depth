@@ -24,22 +24,22 @@
         <div class="container">
           <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarToggle" aria-expanded="false"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-            <a class="navbar-brand" href="{{ url_for('home') }}">Flask Blog</a>
+            <a class="navbar-brand" href="{{ url_for('main.home') }}">Flask Blog</a>
           </div>
           <div class="collapse navbar-collapse" id="navbarToggle">
             <ul class="nav navbar-nav">
-              <li><a href="{{ url_for('home') }}">Home</a></li>
-              <li><a href="{{ url_for('about') }}">About</a></li>
+              <li><a href="{{ url_for('main.home') }}">Home</a></li>
+              <li><a href="{{ url_for('main.about') }}">About</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
               {% if current_user.is_authenticated %}
-                <li><a href="{{ url_for('new_post') }}">New Post</a></li>
-                <li><a href="{{ url_for('account') }}">{{ current_user.username }}</a></li>
-                <li><a href="{{ url_for('logout') }}">Log out</a></li>
+                <li><a href="{{ url_for('posts.new_post') }}">New Post</a></li>
+                <li><a href="{{ url_for('users.account') }}">{{ current_user.username }}</a></li>
+                <li><a href="{{ url_for('users.logout') }}">Log out</a></li>
               {% else %}
-                <li><a href="{{ url_for('login') }}">Log in</a></li>
-                <li><a href="{{ url_for('register') }}">Register</a></li>
+                <li><a href="{{ url_for('users.login') }}">Log in</a></li>
+                <li><a href="{{ url_for('users.register') }}">Register</a></li>
               {% endif%}
             </ul>
           </div>
